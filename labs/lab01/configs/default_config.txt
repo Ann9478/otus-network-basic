@@ -1,0 +1,47 @@
+no ip domain-lookup
+hostname S1
+service password-encryption
+enable secret class
+banner motd #
+Unauthorized access is strictly prohibited. #
+
+Установка пароля на доступ по консольному кабелю:
+line con 0
+logging synchronous 
+
+
+
+=========
+# Настройка пароля для консольного порта
+configure terminal
+line console 0
+password cisco
+login
+exit
+
+# Настройка пароля для VTY
+line vty 0 4
+password cisco
+login
+exit
+
+#Настройка пароля для привилегированного режима
+enable secret cisco
+
+===================================================
+# SVI 1
+interface vlan 1
+ip address 192.168.1.2 255.255.255.0
+no shutdown
+===================================================
+Telnet
+line vty 0 4
+transport input telnet
+
+
+
+Вопросы для повторения
+1.	Зачем необходимо настраивать пароль VTY для коммутатора?
+
+2.	Что нужно сделать, чтобы пароли не отправлялись в незашифрованном виде? 
+service password-encryption
