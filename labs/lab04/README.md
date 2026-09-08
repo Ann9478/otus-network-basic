@@ -7,9 +7,9 @@
 
 | Устройство  | Интерфейс | IP-адрес / префикс       | Link local IPv6-адрес | Длина префикса | Шлюз по умолчанию |
 |-------------|-----------|--------------------------|------------------------------------------------------------|
-|     R1      |   G0/0/0  | 2001:db8:acad:a::1       |   fe80::1             |   64           |       ---         |
-|     R1      |   G0/0/1  | 2001:db8:acad:1::1       |   fe80::1             |   64           |       ---         |
-|     S1      |   VLAN 1  | 2001:db8:acad:1::b       |   fe80::b             |   64           |       ---         |
+|     R1      |   G0/0/0  | 2001:db8:acad:a::1       |   fe80::1             |   64           |                   |
+|     R1      |   G0/0/1  | 2001:db8:acad:1::1       |   fe80::1             |   64           |                   |
+|     S1      |   VLAN 1  | 2001:db8:acad:1::b       |   fe80::b             |   64           |                   |
 |    PC-A     |   NIC     | 2001:db8:acad:1::3       |   SLACC               |   64           |       fe80::1     |
 |    PC-B     |   NIC     | 2001:db8:acad:a::3       |   SLACC               |   64           |       fe80::1     |
 
@@ -142,7 +142,8 @@ Vlan1 is up, line protocol is up
 
 
 **Шаг 4. Назначьте компьютерам статические IPv6-адреса.**
-PC-A:
+
+**PC-A:**
 
 ```
 C:\>ipconfig
@@ -157,7 +158,7 @@ FastEthernet0 Connection:(default port)
    Default Gateway.................: FE80::1
 ```
 
-PC-B:
+**PC-B:**
 
 ```
 C:\>ipconfig
@@ -177,7 +178,7 @@ FastEthernet0 Connection:(default port)
 **PC-A:**
 
 ```
-C:\>**ping fe80::1**
+C:\>ping fe80::1
 
 Pinging fe80::1 with 32 bytes of data:
 
@@ -191,7 +192,9 @@ Ping statistics for FE80::1:
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 1ms, Average = 0ms
 
-C:\>**ping 2001:db8:acad:1::b**
+
+
+C:\>ping 2001:db8:acad:1::b
 
 Pinging 2001:db8:acad:1::b with 32 bytes of data:
 
@@ -205,7 +208,9 @@ Ping statistics for 2001:DB8:ACAD:1::B:
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 0ms, Average = 0ms
 
-C:\>**tracert 2001:db8:acad:a::3**
+
+
+C:\>tracert 2001:db8:acad:a::3
 
 Tracing route to 2001:db8:acad:a::3 over a maximum of 30 hops: 
 
@@ -219,7 +224,7 @@ C:\>
 **PC-B:**
 
 ```
-C:\>**ping 2001:db8:acad:1::3**
+C:\>ping 2001:db8:acad:1::3
 
 Pinging 2001:db8:acad:1::3 with 32 bytes of data:
 
@@ -233,7 +238,9 @@ Ping statistics for 2001:DB8:ACAD:1::3:
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 13ms, Average = 3ms
 
-C:\>**ping fe80::1**
+
+
+C:\>ping fe80::1
 
 Pinging fe80::1 with 32 bytes of data:
 
@@ -263,5 +270,6 @@ Approximate round trip times in milli-seconds:
 
 2001:0db8:acad:0000:0000:0000:aaaa:1234
 
-/64 - 2001:0db8:acad:*0000*
+/64 - 2001:0db8:acad:**0000**
+
 Индентификатор подсети - 0
