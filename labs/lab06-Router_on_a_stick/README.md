@@ -146,7 +146,7 @@ vlan 1000
 name Own
 ```
 
-**Шаг 2. Настройка VLAN на свичах.**
+**Шаг 2. Настройка интерфейса управления и шлюз по умолчанию.**
 
 S1:
 
@@ -250,13 +250,13 @@ int f0/1
 switch mode trunk
 switch trunk allowed vlan 10,20,30,1000
 switch trunk native vlan 1000
-switchport nonegotiation
+switchport nonegotiate
 
 int f0/5
 switch mode trunk
 switch trunk allowed vlan 10,20,30,1000
 switch trunk native vlan 1000
-switchport nonegotiation
+switchport nonegotiate
 
 show int trunk
 ```
@@ -305,6 +305,9 @@ ip add 192.168.20.1 255.255.255.0
 int G0/1.30
 encapsulation dot1q 30
 ip add 192.168.30.1 255.255.255.0
+
+int G0/1.1000
+encapsulation dot1q 1000 native
 
 int G0/1
 no shut
