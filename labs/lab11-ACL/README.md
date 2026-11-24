@@ -496,7 +496,7 @@ interface GigabitEthernet0/0.30
  ip access-group ACL_for_OPERATIONS in
 ```
 
-** Команды для проверки**
+**Команды для проверки**
 
 ```
 PC-A#ping 10.40.0.10
